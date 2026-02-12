@@ -1,0 +1,192 @@
+/* Smooth transitions on interactive elements */
+.btn, .form-control, .form-select, .card {
+  transition: all 0.2s ease;
+}
+
+/* Better focus indicators for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 2px;
+}
+
+/* Slightly better button hover state */
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Scrollbar styling using brand colors */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--bs-light) 85%, white 15%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bs-primary);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-primary-dark, color-mix(in srgb, var(--bs-primary) 85%, black));
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-color: var(--bs-primary) color-mix(in srgb, var(--bs-light) 85%, white 15%);
+}
+
+/* Base card styling */
+.card {
+  background: var(--bs-body-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, var(--bs-border-color) 50%, transparent 50%);
+  box-shadow:
+    0 1px 3px color-mix(in srgb, var(--bs-body-color) 5%, transparent 95%),
+    0 8px 24px color-mix(in srgb, var(--bs-body-color) 8%, transparent 92%),
+    inset 0 1px 0 color-mix(in srgb, white 20%, transparent 80%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover state - subtle lift */
+.card:hover {
+  background: var(--bs-body-bg);
+  border-color: color-mix(in srgb, var(--bs-border-color) 70%, transparent 30%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 10px color-mix(in srgb, var(--bs-primary) 70%, transparent 30%),
+    inset 0 1px 0 color-mix(in srgb, white 25%, transparent 75%);
+}
+
+.card-header {
+  color: var(--bs-primary)!important;
+  font-weight: bold!important;
+}
+
+.card-footer {
+  font-style: italic!important;
+  color: var(--bs-secondary-color)!important;
+  text-align: right!important;
+}
+
+.sidebar-title {
+  color: var(--bs-primary)!important;
+  font-weight: bold!important;
+  text-align: center;
+}
+
+.navbar-brand {
+  color: var(--bs-primary)!important;
+  font-weight: bold!important;
+}
+
+/* Table styling - strip matching */
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: var(--bs-light);
+}
+.table-striped > tbody > tr:nth-of-type(even) > * {
+  background-color: color-mix(in srgb, var(--bs-light) 92%, var(--bs-primary) 8%) ;
+}
+.table-striped > thead > tr > * {
+  background-color: var(--bs-light);
+}
+
+/* Changing the 'to' box in the select input for dateranges*/
+.input-daterange .input-group-text {
+  background-color: color-mix(in srgb, var(--bs-light) 85%, white 15%);
+}
+
+/* Universal input styling */
+input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]),
+textarea,
+select,
+.form-control,
+.form-select {
+  background-color: color-mix(in srgb, var(--bs-light) 85%, white 15%);
+}
+
+/* Only style unchecked checkboxes and radios */
+.form-check-input:not(:checked) {
+  background-color: color-mix(in srgb, var(--bs-light) 85%, white 15%);
+}
+
+.selectize-input,
+.selectize-dropdown {
+  background-color: color-mix(in srgb, var(--bs-light) 85%, white 15%) !important;
+}
+
+.option:hover {
+  background-color: color-mix(in srgb, var(--bs-primary) 50%,white 50%) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--bs-light);
+  opacity: 0.6;
+}
+
+/* Remove well container constraints on vertical sidebar navigation */
+.bslib-sidebar-layout > aside > div > div > div.col-sm-4.well {
+  max-width: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px!important;
+  margin: 0 auto;
+}
+
+/* Make the nav-pills container span full width */
+.bslib-sidebar .nav-pills {
+  width: 100%;
+}
+
+/* Ensure the pill list container also spans full width */
+.bslib-sidebar ul.nav-pills {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Styled navigation pills for sidebar */
+.nav-pills .nav-link {
+  border-radius: 12px;
+  margin-bottom: 10px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Active pill styling */
+.nav-pills .nav-link.active {
+  border-radius: 12px;
+  background-color: var(--bs-primary);
+  color: var(--bs-light);
+  font-weight: bold;
+}
+
+/* Horizontal navbar active styling */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show,
+.nav-tabs .nav-link.active {
+  color: var(--bs-primary) !important;
+  border-bottom-color: var(--bs-primary) !important;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link.active:hover,
+.navbar-nav .nav-link.active:focus,
+.nav-tabs .nav-link.active:hover,
+.nav-tabs .nav-link.active:focus {
+  color: var(--bs-primary) !important;
+  border-bottom-color: var(--bs-primary) !important;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--bs-primary); /* Replace with your desired color */
+}
+
+.sidebar hr {
+    margin: 8px ;
+}

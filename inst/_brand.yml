@@ -1,0 +1,56 @@
+logo:
+  images:
+    small: images/magic.png
+    medium: images/magic.png
+    large: images/magic.png
+meta:
+  name: Bioscience Data Portfolio
+  link: https://yourportfolio.com
+color:
+  primary: "#570a10"
+  secondary: "#ad720a"
+  success: "#325106"
+  danger: "#d64550"
+  warning: "#cda029"
+  info: "#5a8cb5"
+  light: &light-color "#bad9cf"
+  dark: &dark-color "#1a1c1a"
+  foreground: *dark-color
+  background: *light-color
+# Dark mode overrides — same hue families, lifted for contrast on dark surfaces
+color-dark:
+  primary: "#cf8536"
+  secondary: "#30d9a0"
+  success: "#6aad3a"
+  danger: "#e8737b"
+  warning: "#e0c050"
+  info: "#7cb8d8"
+  light: "#1c1e26"
+  dark: "#d6e8e0"
+  foreground: "#d6e8e0"
+  background: "#1c1e26"
+# Direct Bootstrap Sass variable mappings
+theme:
+  # Body
+  body-bg: *light-color
+  body-color: *dark-color
+  # Border radius
+  border-radius: "0.75rem"
+  border-radius-sm: "0.5rem"
+  border-radius-lg: "1rem"
+# text styling
+typography:
+  fonts:
+    - family: &base-font Manrope
+      source: google
+    - family: &header-font Montserrat
+      source: google
+  base:
+    family: *base-font
+    size: 1rem
+    line-height: 1.65
+    weight: 400
+  headings:
+    family: *header-font
+    weight: 700
+    line-height: 1.1

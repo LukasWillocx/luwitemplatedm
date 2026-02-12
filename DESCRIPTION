@@ -1,0 +1,29 @@
+Package: luwitemplatedm
+Title: Unified Brand Styling for Shiny and ggplot2
+Version: 0.0.0.9000
+Authors@R: 
+    person("Lukas", "Willocx", , "lukaswillocx@gmail.com", role = c("aut", "cre"))
+Description: Provides a complete styling system driven by a single '_brand.yml' 
+    file. Create consistent Bootstrap themes for Shiny applications, ggplot2 
+    visualizations, and interactive plotly charts with unified colors, fonts, 
+    and styling. All components automatically share your brand identity.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+LazyData: true
+Imports: 
+    bslib,
+    shiny,
+    ggplot2,
+    showtext,
+    sysfonts,
+    plotly,
+    yaml
+Suggests:
+    knitr,
+    rmarkdown,
+    sysfonts
+URL: https://github.com/LukasWillocx/luwitemplate
+BugReports: https://github.com/LukasWillocx/luwitemplate/issues
+VignetteBuilder: knitr
