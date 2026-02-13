@@ -9,7 +9,8 @@ use_dark_mode(input, session, input_id = "dark_mode")
 \arguments{
 \item{input}{The Shiny \code{input} object}
 
-\item{session}{The Shiny \code{session} object}
+\item{session}{The Shiny \code{session} object (kept for API compatibility,
+not actively used)}
 
 \item{input_id}{Character. The ID of the \code{bslib::input_dark_mode()}
 widget in your UI. Default is \code{"dark_mode"}.}
@@ -24,20 +25,16 @@ A list with two reactive elements:
 }
 \description{
 Wires up reactive theme switching for dark mode. Call this once in your
-Shiny server to get a reactive theme that tracks the toggle state and
-automatically updates the page styling.
+Shiny server to get a reactive theme that tracks the toggle state.
+Bootstrap components are styled via CSS custom property overrides injected
+by \code{\link{my_theme}} — no full theme swap occurs on toggle.
 }
 \details{
-This function pre-computes both the light and dark themes at
-initialization so that toggling is instant — no Sass recompilation
-happens on each switch. It also calls
-\code{session$setCurrentTheme()} to update Bootstrap styling
-whenever the toggle changes.
-
-Pass \code{dm$theme()} to any plot function that accepts a
-\code{theme} argument (\code{\link{theme_luwi}},
-\code{\link{luwi_ggplotly}}, \code{\link{get_theme_colors}}, etc.)
-to ensure plots re-render with the correct palette.
+The light theme is compiled at initialization. The dark theme is compiled
+lazily on first toggle to avoid unnecessary startup cost. Bootstrap
+components switch instantly via CSS custom property overrides (no
+\code{session$setCurrentTheme()} call). Pass \code{dm$theme()} to plot
+functions to make them reactive to the toggle.
 }
 \section{UI Setup}{
 

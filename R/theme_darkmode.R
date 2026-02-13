@@ -1,11 +1,13 @@
 #' Enable Dark Mode Toggling in Shiny
 #'
 #' Wires up reactive theme switching for dark mode. Call this once in your
-#' Shiny server to get a reactive theme that tracks the toggle state and
-#' automatically updates the page styling.
+#' Shiny server to get a reactive theme that tracks the toggle state.
+#' Bootstrap components are styled via CSS custom property overrides injected
+#' by \code{\link{my_theme}} — no full theme swap occurs on toggle.
 #'
 #' @param input The Shiny \code{input} object
-#' @param session The Shiny \code{session} object
+#' @param session The Shiny \code{session} object (kept for API compatibility,
+#'   not actively used)
 #' @param input_id Character. The ID of the \code{bslib::input_dark_mode()}
 #'   widget in your UI. Default is \code{"dark_mode"}.
 #'
@@ -17,16 +19,11 @@
 #'   }
 #'
 #' @details
-#' This function pre-computes both the light and dark themes at
-#' initialization so that toggling is instant — no Sass recompilation
-#' happens on each switch. It also calls
-#' \code{session$setCurrentTheme()} to update Bootstrap styling
-#' whenever the toggle changes.
-#'
-#' Pass \code{dm$theme()} to any plot function that accepts a
-#' \code{theme} argument (\code{\link{theme_luwi}},
-#' \code{\link{luwi_ggplotly}}, \code{\link{get_theme_colors}}, etc.)
-#' to ensure plots re-render with the correct palette.
+#' The light theme is compiled at initialization. The dark theme is compiled
+#' lazily on first toggle to avoid unnecessary startup cost. Bootstrap
+#' components switch instantly via CSS custom property overrides (no
+#' \code{session$setCurrentTheme()} call). Pass \code{dm$theme()} to plot
+#' functions to make them reactive to the toggle.
 #'
 #' @section UI Setup:
 #' Your UI must include \code{bslib::input_dark_mode(id = "dark_mode")}
@@ -73,22 +70,28 @@
 #' @export
 use_dark_mode <- function(input, session, input_id = "dark_mode") {
 
-  # Pre-compute both themes once — avoids Sass recompilation on every toggle
+  # Pre-compute light theme; dark theme is compiled lazily on first toggle
   light_theme <- my_theme("light")
-  dark_theme  <- my_theme("dark")
+  dark_theme_cache <- NULL
 
   current_mode <- shiny::reactive({
     if (identical(input[[input_id]], "dark")) "dark" else "light"
   })
 
   current_theme <- shiny::reactive({
-    if (current_mode() == "dark") dark_theme else light_theme
+    if (current_mode() == "dark") {
+      if (is.null(dark_theme_cache)) {
+        dark_theme_cache <<- my_theme("dark")
+      }
+      dark_theme_cache
+    } else {
+      light_theme
+    }
   })
 
-  # Update the page-level Bootstrap theme when mode changes
-  shiny::observe({
-    session$setCurrentTheme(current_theme())
-  })
+  # No session$setCurrentTheme() needed — the [data-bs-theme="dark"] CSS block
+  # injected by my_theme() handles all Bootstrap components via custom properties.
+  # Plot reactivity comes from dm$theme() invalidating render functions.
 
   list(
     mode  = current_mode,
