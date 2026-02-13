@@ -279,22 +279,33 @@ textarea::placeholder {
 }
 
 /* --- Checkboxes --- */
-[data-bs-theme="dark"] input[type="checkbox"]:checked {
+[data-bs-theme="dark"] input[type="checkbox"]:checked,
+[data-bs-theme="dark"] .form-check-input:checked[type="checkbox"],
+[data-bs-theme="dark"] .shiny-input-container .checkbox input:checked,
+[data-bs-theme="dark"] .shiny-input-container .checkbox-inline input:checked {
   background-color: var(--bs-primary) !important;
   border-color: var(--bs-primary) !important;
   accent-color: var(--bs-primary) !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e") !important;
 }
 
 /* --- Radio buttons --- */
-[data-bs-theme="dark"] input[type="radio"]:checked {
+[data-bs-theme="dark"] input[type="radio"]:checked,
+[data-bs-theme="dark"] .form-check-input:checked[type="radio"],
+[data-bs-theme="dark"] .shiny-input-container .radio input:checked,
+[data-bs-theme="dark"] .shiny-input-container .radio-inline input:checked {
   background-color: var(--bs-primary) !important;
   border-color: var(--bs-primary) !important;
   accent-color: var(--bs-primary) !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e") !important;
 }
 
 /* --- Checkbox & radio focus --- */
 [data-bs-theme="dark"] input[type="checkbox"]:focus,
-[data-bs-theme="dark"] input[type="radio"]:focus {
+[data-bs-theme="dark"] input[type="radio"]:focus,
+[data-bs-theme="dark"] .form-check-input:focus,
+[data-bs-theme="dark"] .shiny-input-container .checkbox input:focus,
+[data-bs-theme="dark"] .shiny-input-container .radio input:focus {
   border-color: var(--bs-primary) !important;
   box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
 }
@@ -332,12 +343,21 @@ textarea::placeholder {
 /* --- Datepicker --- */
 [data-bs-theme="dark"] .datepicker table tr td.active,
 [data-bs-theme="dark"] .datepicker table tr td.active:hover,
-[data-bs-theme="dark"] .datepicker table tr td.active.day,
+[data-bs-theme="dark"] .datepicker table tr td.active:focus,
 [data-bs-theme="dark"] .datepicker table tr td.active:active,
 [data-bs-theme="dark"] .datepicker table tr td.active.active,
+[data-bs-theme="dark"] .datepicker table tr td.active.day,
+[data-bs-theme="dark"] .datepicker table tr td.active.highlighted,
+[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:active,
+[data-bs-theme="dark"] .datepicker table tr td.active.highlighted.active,
+[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:hover,
+[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:focus,
 [data-bs-theme="dark"] .datepicker table tr td span.active,
-[data-bs-theme="dark"] .datepicker table tr td span.active:hover {
+[data-bs-theme="dark"] .datepicker table tr td span.active:hover,
+[data-bs-theme="dark"] .datepicker table tr td span.active:active,
+[data-bs-theme="dark"] .datepicker table tr td span.active.active {
   background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
   background-image: none !important;
   color: var(--bs-body-bg) !important;
 }
