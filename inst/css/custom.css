@@ -107,6 +107,7 @@ h1, h2, h3, h4, h5 {
 .sidebar-title {
   color: var(--bs-primary) !important;
   font-weight: bold !important;
+  text-align: center;
 }
 
 .navbar-brand {
@@ -194,12 +195,6 @@ textarea::placeholder {
 /* ==========================================================================
    7. Sidebar & Navigation
    ========================================================================== */
-
-/* Sidebar header */
-.sidebar-title {
-  background-color: var(--bs-tertiary-bg) !important;
-  text-align: center;
-}
 
 .sidebar hr {
   margin: 8px;
