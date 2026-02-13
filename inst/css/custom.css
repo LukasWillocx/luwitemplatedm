@@ -107,7 +107,6 @@ h1, h2, h3, h4, h5 {
 .sidebar-title {
   color: var(--bs-primary) !important;
   font-weight: bold !important;
-  text-align: center;
 }
 
 .navbar-brand {
@@ -195,6 +194,12 @@ textarea::placeholder {
 /* ==========================================================================
    7. Sidebar & Navigation
    ========================================================================== */
+
+/* Sidebar header */
+.sidebar-title {
+  background-color: var(--bs-tertiary-bg) !important;
+  text-align: center;
+}
 
 .sidebar hr {
   margin: 8px;
@@ -340,32 +345,7 @@ textarea::placeholder {
   color: var(--bs-body-color) !important;
 }
 
-/* --- Datepicker --- */
-[data-bs-theme="dark"] .datepicker table tr td.active,
-[data-bs-theme="dark"] .datepicker table tr td.active:hover,
-[data-bs-theme="dark"] .datepicker table tr td.active:focus,
-[data-bs-theme="dark"] .datepicker table tr td.active:active,
-[data-bs-theme="dark"] .datepicker table tr td.active.active,
-[data-bs-theme="dark"] .datepicker table tr td.active.day,
-[data-bs-theme="dark"] .datepicker table tr td.active.highlighted,
-[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:active,
-[data-bs-theme="dark"] .datepicker table tr td.active.highlighted.active,
-[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:hover,
-[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:focus,
-[data-bs-theme="dark"] .datepicker table tr td span.active,
-[data-bs-theme="dark"] .datepicker table tr td span.active:hover,
-[data-bs-theme="dark"] .datepicker table tr td span.active:active,
-[data-bs-theme="dark"] .datepicker table tr td span.active.active {
-  background-color: var(--bs-primary) !important;
-  border-color: var(--bs-primary) !important;
-  background-image: none !important;
-  color: var(--bs-body-bg) !important;
-}
-[data-bs-theme="dark"] .datepicker table tr td.today,
-[data-bs-theme="dark"] .datepicker table tr td.today:hover {
-  background-color: color-mix(in srgb, var(--bs-primary) 30%, var(--bs-body-bg) 70%) !important;
-  background-image: none !important;
-}
+/* --- Datepicker & Shiny checkbox/radio: handled by dark_mode_css() in UI --- */
 
 /* --- Accent color fallback --- */
 [data-bs-theme="dark"] input {

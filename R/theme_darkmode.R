@@ -98,3 +98,95 @@ use_dark_mode <- function(input, session, input_id = "dark_mode") {
     theme = current_theme
   )
 }
+
+#' Dark Mode CSS for Third-Party Widgets
+#'
+#' Generates a \code{tags$style()} block that overrides compiled colors in
+#' third-party widget stylesheets (bootstrap-datepicker, Shiny input
+#' containers) that load separately from the bslib theme. Place this in
+#' your UI to ensure these widgets respect dark mode.
+#'
+#' @return A \code{shiny::tags$head()} element to include in your UI
+#'
+#' @details
+#' Some Shiny widgets (datepicker, checkboxes, radios) load their own CSS
+#' files independently of bslib. These files contain compiled hex values
+#' that cannot be overridden from within the bslib theme. This function
+#' injects a \code{<style>} tag into the page head that loads after all
+#' widget CSS, ensuring the dark palette takes effect.
+#'
+#' @examples
+#' \dontrun{
+#' ui <- page_sidebar(
+#'   theme = my_theme(),
+#'   dark_mode_css(),
+#'   input_dark_mode(id = "dark_mode"),
+#'   sidebar = sidebar(
+#'     dateRangeInput("dates", "Date Range:"),
+#'     checkboxInput("flag", "Show details")
+#'   )
+#' )
+#' }
+#'
+#' @export
+dark_mode_css <- function() {
+  brand_file <- system.file("_brand.yml", package = "luwitemplatedm")
+  brand_config <- yaml::read_yaml(brand_file)
+  dk <- brand_config[["color-dark"]]
+
+  if (is.null(dk)) return(shiny::tags$head())
+
+  # Helper: hex to "r, g, b"
+  hex_to_rgb <- function(hex) {
+    rgb <- grDevices::col2rgb(hex)
+    paste(rgb[1], rgb[2], rgb[3], sep = ", ")
+  }
+
+  css <- paste0('
+/* Third-party widget dark mode overrides — injected last to win specificity */
+
+/* Datepicker */
+html[data-bs-theme="dark"] .datepicker table tr td.active,
+html[data-bs-theme="dark"] .datepicker table tr td.active:hover,
+html[data-bs-theme="dark"] .datepicker table tr td.active:focus,
+html[data-bs-theme="dark"] .datepicker table tr td.active:active,
+html[data-bs-theme="dark"] .datepicker table tr td.active.active,
+html[data-bs-theme="dark"] .datepicker table tr td.active.day,
+html[data-bs-theme="dark"] .datepicker table tr td.active.highlighted,
+html[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:active,
+html[data-bs-theme="dark"] .datepicker table tr td.active.highlighted.active,
+html[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:hover,
+html[data-bs-theme="dark"] .datepicker table tr td.active.highlighted:focus,
+html[data-bs-theme="dark"] .datepicker table tr td span.active,
+html[data-bs-theme="dark"] .datepicker table tr td span.active:hover,
+html[data-bs-theme="dark"] .datepicker table tr td span.active:active,
+html[data-bs-theme="dark"] .datepicker table tr td span.active.active {
+  background-color: ', dk$primary, ' !important;
+  border-color: ', dk$primary, ' !important;
+  background-image: none !important;
+  color: ', dk$background, ' !important;
+}
+html[data-bs-theme="dark"] .datepicker table tr td.today,
+html[data-bs-theme="dark"] .datepicker table tr td.today:hover {
+  background-color: color-mix(in srgb, ', dk$primary, ' 30%, ', dk$background, ' 70%) !important;
+  background-image: none !important;
+}
+
+/* Shiny checkbox & radio containers */
+html[data-bs-theme="dark"] .shiny-input-container .checkbox input:checked,
+html[data-bs-theme="dark"] .shiny-input-container .checkbox-inline input:checked,
+html[data-bs-theme="dark"] .shiny-input-container .radio input:checked,
+html[data-bs-theme="dark"] .shiny-input-container .radio-inline input:checked {
+  background-color: ', dk$primary, ' !important;
+  border-color: ', dk$primary, ' !important;
+  accent-color: ', dk$primary, ' !important;
+}
+html[data-bs-theme="dark"] .shiny-input-container .checkbox input:focus,
+html[data-bs-theme="dark"] .shiny-input-container .radio input:focus {
+  border-color: ', dk$primary, ' !important;
+  box-shadow: 0 0 0 0.25rem rgba(', hex_to_rgb(dk$primary), ', 0.25) !important;
+}
+')
+
+  shiny::tags$head(shiny::tags$style(shiny::HTML(css)))
+}
