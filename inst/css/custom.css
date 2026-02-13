@@ -1,20 +1,40 @@
-/* Smooth transitions on interactive elements */
+/* ==========================================================================
+   Luwi Template — Custom CSS
+   ==========================================================================
+   Table of Contents:
+   1. Transitions & Interactions
+   2. Scrollbars
+   3. Cards
+   4. Typography & Branding
+   5. Tables
+   6. Form Inputs
+   7. Sidebar & Navigation
+   8. Dark Mode Overrides
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. Transitions & Interactions
+   ========================================================================== */
+
 .btn, .form-control, .form-select, .card {
   transition: all 0.2s ease;
 }
 
-/* Better focus indicators for accessibility */
 *:focus-visible {
   outline: 2px solid var(--bs-primary);
   outline-offset: 2px;
 }
 
-/* Slightly better button hover state */
 .btn:hover {
   transform: translateY(-1px);
 }
 
-/* Scrollbar styling using brand colors */
+
+/* ==========================================================================
+   2. Scrollbars
+   ========================================================================== */
+
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
@@ -33,12 +53,16 @@
   background: var(--bs-primary-dark, color-mix(in srgb, var(--bs-primary) 85%, black));
 }
 
-/* Firefox scrollbar styling */
+/* Firefox */
 * {
   scrollbar-color: var(--bs-primary) color-mix(in srgb, var(--bs-light) 85%, white 15%);
 }
 
-/* Base card styling */
+
+/* ==========================================================================
+   3. Cards
+   ========================================================================== */
+
 .card {
   background: var(--bs-body-bg);
   backdrop-filter: blur(12px);
@@ -51,7 +75,6 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover state - subtle lift */
 .card:hover {
   background: var(--bs-body-bg);
   border-color: color-mix(in srgb, var(--bs-border-color) 70%, transparent 30%);
@@ -62,44 +85,61 @@
 }
 
 .card-header {
-  color: var(--bs-primary)!important;
-  font-weight: bold!important;
+  color: var(--bs-primary) !important;
+  font-weight: bold !important;
 }
 
 .card-footer {
-  font-style: italic!important;
-  color: var(--bs-secondary-color)!important;
-  text-align: right!important;
+  font-style: italic !important;
+  color: var(--bs-secondary-color) !important;
+  text-align: right !important;
+}
+
+
+/* ==========================================================================
+   4. Typography & Branding
+   ========================================================================== */
+
+h1, h2, h3, h4, h5 {
+  color: var(--bs-primary);
 }
 
 .sidebar-title {
-  color: var(--bs-primary)!important;
-  font-weight: bold!important;
-  text-align: center;
+  color: var(--bs-primary) !important;
+  font-weight: bold !important;
 }
 
 .navbar-brand {
-  color: var(--bs-primary)!important;
-  font-weight: bold!important;
+  color: var(--bs-primary) !important;
+  font-weight: bold !important;
 }
 
-/* Table styling - strip matching */
+
+/* ==========================================================================
+   5. Tables
+   ========================================================================== */
+
 .table-striped > tbody > tr:nth-of-type(odd) > * {
   background-color: var(--bs-light);
 }
 .table-striped > tbody > tr:nth-of-type(even) > * {
-  background-color: color-mix(in srgb, var(--bs-light) 92%, var(--bs-primary) 8%) ;
+  background-color: color-mix(in srgb, var(--bs-light) 92%, var(--bs-primary) 8%);
 }
 .table-striped > thead > tr > * {
   background-color: var(--bs-light);
 }
 
-/* Changing the 'to' box in the select input for dateranges*/
+
+/* ==========================================================================
+   6. Form Inputs
+   ========================================================================== */
+
+/* Date range separator */
 .input-daterange .input-group-text {
   background-color: color-mix(in srgb, var(--bs-light) 85%, white 15%);
 }
 
-/* Universal input styling */
+/* Universal input backgrounds */
 input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]),
 textarea,
 select,
@@ -108,48 +148,81 @@ select,
   background-color: color-mix(in srgb, var(--bs-light) 85%, white 15%);
 }
 
-/* Only style unchecked checkboxes and radios */
+/* Unchecked checkboxes and radios */
 .form-check-input:not(:checked) {
   background-color: color-mix(in srgb, var(--bs-light) 85%, white 15%);
 }
 
+/* Selectize backgrounds */
 .selectize-input,
 .selectize-dropdown {
   background-color: color-mix(in srgb, var(--bs-light) 85%, white 15%) !important;
 }
 
-.option:hover {
-  background-color: color-mix(in srgb, var(--bs-primary) 50%,white 50%) !important;
+/* Selectize focus */
+.selectize-input.focus {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
 }
 
+/* Selectize active option */
+.selectize-dropdown .active {
+  background-color: var(--bs-primary) !important;
+  color: var(--bs-body-bg) !important;
+}
+
+/* Selectize option hover */
+.option:hover {
+  background-color: color-mix(in srgb, var(--bs-primary) 50%, var(--bs-body-bg) 50%) !important;
+}
+
+/* Focus states */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
+}
+
+/* Placeholders */
 input::placeholder,
 textarea::placeholder {
   color: var(--bs-light);
   opacity: 0.6;
 }
 
-/* Remove well container constraints on vertical sidebar navigation */
+
+/* ==========================================================================
+   7. Sidebar & Navigation
+   ========================================================================== */
+
+/* Sidebar header */
+.sidebar-title {
+  background-color: var(--bs-tertiary-bg) !important;
+  text-align: center;
+}
+
+.sidebar hr {
+  margin: 8px;
+}
+
+/* Remove well container constraints */
 .bslib-sidebar-layout > aside > div > div > div.col-sm-4.well {
   max-width: none;
   width: 100%;
   padding: 10px;
-  border-radius: 12px!important;
+  border-radius: 12px !important;
   margin: 0 auto;
 }
 
-/* Make the nav-pills container span full width */
-.bslib-sidebar .nav-pills {
-  width: 100%;
-}
-
-/* Ensure the pill list container also spans full width */
+/* Nav pills — full width in sidebar */
+.bslib-sidebar .nav-pills,
 .bslib-sidebar ul.nav-pills {
   width: 100%;
   padding: 0;
   margin: 0;
 }
 
-/* Styled navigation pills for sidebar */
+/* Nav pill links */
 .nav-pills .nav-link {
   border-radius: 12px;
   margin-bottom: 10px;
@@ -158,7 +231,7 @@ textarea::placeholder {
   width: 100%;
 }
 
-/* Active pill styling */
+/* Active pill */
 .nav-pills .nav-link.active {
   border-radius: 12px;
   background-color: var(--bs-primary);
@@ -166,7 +239,7 @@ textarea::placeholder {
   font-weight: bold;
 }
 
-/* Horizontal navbar active styling */
+/* Horizontal navbar active state */
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show,
 .nav-tabs .nav-link.active {
@@ -183,10 +256,109 @@ textarea::placeholder {
   border-bottom-color: var(--bs-primary) !important;
 }
 
-h1, h2, h3, h4, h5 {
-    color: var(--bs-primary); /* Replace with your desired color */
+
+/* ==========================================================================
+   8. Dark Mode Overrides
+   --------------------------------------------------------------------------
+   bslib compiles the primary hex into Shiny widget CSS at build time.
+   These [data-bs-theme="dark"] rules override those baked-in values so
+   widgets adopt the dark palette from _brand.yml.
+   ========================================================================== */
+
+/* --- Sliders (ionRangeSlider) --- */
+[data-bs-theme="dark"] .irs--shiny .irs-handle {
+  background-color: var(--bs-primary) !important;
+}
+[data-bs-theme="dark"] .irs--shiny .irs-bar {
+  background-color: var(--bs-primary) !important;
+  border-top-color: var(--bs-primary) !important;
+  border-bottom-color: var(--bs-primary) !important;
+}
+[data-bs-theme="dark"] .irs--shiny .irs-from,
+[data-bs-theme="dark"] .irs--shiny .irs-to,
+[data-bs-theme="dark"] .irs--shiny .irs-single {
+  background-color: var(--bs-primary) !important;
+}
+[data-bs-theme="dark"] .irs--shiny .irs-line {
+  background-color: color-mix(in srgb, var(--bs-primary) 20%, var(--bs-body-bg) 80%) !important;
 }
 
-.sidebar hr {
-    margin: 8px ;
+/* --- Checkboxes --- */
+[data-bs-theme="dark"] input[type="checkbox"]:checked {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  accent-color: var(--bs-primary) !important;
+}
+
+/* --- Radio buttons --- */
+[data-bs-theme="dark"] input[type="radio"]:checked {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  accent-color: var(--bs-primary) !important;
+}
+
+/* --- Checkbox & radio focus --- */
+[data-bs-theme="dark"] input[type="checkbox"]:focus,
+[data-bs-theme="dark"] input[type="radio"]:focus {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
+}
+
+/* --- Switches --- */
+[data-bs-theme="dark"] .form-switch .form-check-input:checked {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+
+/* --- Select & text input focus --- */
+[data-bs-theme="dark"] .form-select:focus,
+[data-bs-theme="dark"] .form-control:focus {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
+}
+
+/* --- Selectize --- */
+[data-bs-theme="dark"] .selectize-input.focus {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
+}
+[data-bs-theme="dark"] .selectize-dropdown .active,
+[data-bs-theme="dark"] .selectize-dropdown .selected,
+[data-bs-theme="dark"] .selectize-dropdown [data-selectable].active,
+[data-bs-theme="dark"] .selectize-dropdown .option.active,
+[data-bs-theme="dark"] .selectize-dropdown .option.selected {
+  background-color: var(--bs-primary) !important;
+  color: var(--bs-body-bg) !important;
+}
+[data-bs-theme="dark"] .selectize-input .item {
+  color: var(--bs-body-color) !important;
+}
+
+/* --- Datepicker --- */
+[data-bs-theme="dark"] .datepicker table tr td.active,
+[data-bs-theme="dark"] .datepicker table tr td.active:hover,
+[data-bs-theme="dark"] .datepicker table tr td.active.day,
+[data-bs-theme="dark"] .datepicker table tr td.active:active,
+[data-bs-theme="dark"] .datepicker table tr td.active.active,
+[data-bs-theme="dark"] .datepicker table tr td span.active,
+[data-bs-theme="dark"] .datepicker table tr td span.active:hover {
+  background-color: var(--bs-primary) !important;
+  background-image: none !important;
+  color: var(--bs-body-bg) !important;
+}
+[data-bs-theme="dark"] .datepicker table tr td.today,
+[data-bs-theme="dark"] .datepicker table tr td.today:hover {
+  background-color: color-mix(in srgb, var(--bs-primary) 30%, var(--bs-body-bg) 70%) !important;
+  background-image: none !important;
+}
+
+/* --- Accent color fallback --- */
+[data-bs-theme="dark"] input {
+  accent-color: var(--bs-primary) !important;
+}
+
+/* --- DataTables pagination --- */
+[data-bs-theme="dark"] .page-item.active .page-link {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
 }
